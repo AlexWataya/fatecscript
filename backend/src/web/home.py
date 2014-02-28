@@ -6,7 +6,7 @@ from tekton import router
 
 def index(_write_tmpl):
     url = router.to_path(my_form)
-    _write_tmpl('templates/home.html', {'form_url': url})
+    _write_tmpl('templates/index.html', {'form_url': url})
 
 
 def params(_resp, *args, **kwargs):
