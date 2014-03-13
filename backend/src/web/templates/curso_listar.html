@@ -1,0 +1,15 @@
+{% extends 'templates/curso_base.html' %}
+
+{% block main %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h1>Usuários</h1>
+            <ol>
+                {% for curso in lista_cursos %}
+                    <li>{{ curso.nome }} - {{ curso.login }}</li>
+                {% endfor %}
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
