@@ -80,16 +80,22 @@
                                 ('Cadastro', '/usuario/crud/cadastrar'),
                                 ('Fotos', '/usuario/crud/foto'),
                                 ('Cardápio', '/usuario/crud/cardapio'),
-                                ('Como chegar', '/usuario/crud/como_chegar'),
-                                ('Logar','/home/login')
+                                ('Como chegar', '/usuario/crud/como_chegar')
                             ] %}
                         {% endif %}
 
                         {% for name, href in menu %}
-                            <li{% if request.path.startswith(href) %} class="active"{% endif %}>
+                            <li {% if request.path.startswith(href) %} class="active"{% endif %}>
                                 <a href="{{ href }}">{{ name }}</a>
                             </li>
                         {% endfor %}
+                        <div class='nav navbar-nav navbar-right' style="padding: 8px 8px 0 0; margin-left: 620px;">
+                            {% if _usuario_logado %}
+                                <a href="{{_logout_url}}" class="btn btn-danger">({{_usuario_logado.nome}}) Sair </a>
+                            {% else %}
+                                <a href="{{_login_url}}" class="btn btn-success"> Logar</a>
+                            {% endif %}
+                        </div>
                     </ul>
                     <!--<form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
