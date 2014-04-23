@@ -4,13 +4,30 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <h1>Usuários</h1>
-            <ol>
+            <div class="table-responsive">
+            <table class = "table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Logradouro</th>
+                        <th>Número</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                    </tr>
+                </thead>
+            <tbody>
                 {% for usuario in lista_usuarios %}
-                    <li>{{ usuario.nome }} - {{ usuario.login }}- {{ usuario.password }}- {{ usuario.logradouro }}- {{ usuario.num }}
-                    - {{ usuario.bairro }}- {{ usuario.cidade }}</li>
+                <tr>
+                    <td>{{ usuario.nome }}</td>
+                    <td>{{ usuario.logradouro }}</td>
+                    <td>{{ usuario.num }}</td>
+                    <td>{{ usuario.bairro }}</td>
+                    <td>{{ usuario.cidade }}</td>
+                </tr>
                 {% endfor %}
-
-            </ol>
+            </tbody>
+            </table>
+            </div>
         </div>
     </div>
 {% endblock %}

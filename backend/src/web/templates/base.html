@@ -57,14 +57,15 @@
                         <li{% if request.path == '/' %} class="active"{% endif %}>
                             <a href="/">Home</a>
                         </li>
-
-                        {% if is_logged %}
+                        <!--{% if is_logged %}
                             {% if is_admin %}
                                 {% set menu = [
                                     ('Usuarios', '/usuario/crud/usuario_listar'),
                                     ('Cadastro', '/usuario/crud/cadastrar'),
                                     ('Fotos', '/usuario/crud/foto'),
                                     ('Cardápio', '/usuario/crud/cardapio'),
+                                    ('Cardapios', '/usuario/crud/cardapio_listar'),
+                                    ('Alterar Cardapio', '/usuario/crud/cardapios'),
                                     ('Como chegar', '/usuario/crud/como_chegar')
                                 ] %}
                             {% else %}
@@ -72,6 +73,8 @@
                                         ('Cadastro', '/usuario/crud/cadastrar'),
                                         ('Fotos', '/usuario/crud/foto'),
                                         ('Cardápio', '/usuario/crud/cardapio'),
+                                        ('Cardapios', '/usuario/crud/cardapio_listar'),
+                                        ('Alterar Cardapio', '/usuario/crud/cardapios'),
                                         ('Como chegar', '/usuario/crud/como_chegar')
                                 ] %}
                             {% endif %}
@@ -80,16 +83,29 @@
                                 ('Cadastro', '/usuario/crud/cadastrar'),
                                 ('Fotos', '/usuario/crud/foto'),
                                 ('Cardápio', '/usuario/crud/cardapio'),
+                                ('Cardapios', '/usuario/crud/cardapio_listar'),
+                                ('Alterar Cardapio', '/usuario/crud/cardapios'),
                                 ('Como chegar', '/usuario/crud/como_chegar')
                             ] %}
-                        {% endif %}
+                        {% endif %}-->
+
+                        {% set menu = [
+
+                                    ('Cadastro', '/usuario/crud/cadastrar'),
+                                    ('Usuarios', '/usuario/crud/usuario_listar'),
+                                    ('Fotos', '/usuario/crud/foto'),
+                                    ('Cardapios', '/usuario/crud/cardapio_listar'),
+                                    ('Adicionar Cardapio', '/usuario/crud/cardapios'),
+                                    ('Como chegar', '/usuario/crud/como_chegar')
+
+                                ] %}
 
                         {% for name, href in menu %}
                             <li {% if request.path.startswith(href) %} class="active"{% endif %}>
                                 <a href="{{ href }}">{{ name }}</a>
                             </li>
                         {% endfor %}
-                        <div class='nav navbar-nav navbar-right' style="padding: 8px 8px 0 0; margin-left: 620px;">
+                        <div class='nav navbar-nav navbar-right' style="padding: 8px 8px 0 0; margin-left: 320px;">
                             {% if _usuario_logado %}
                                 <a href="{{_logout_url}}" class="btn btn-danger">({{_usuario_logado.nome}}) Sair </a>
                             {% else %}

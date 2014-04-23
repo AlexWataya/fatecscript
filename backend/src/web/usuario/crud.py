@@ -2,10 +2,13 @@
 from __future__ import absolute_import, unicode_literals
 from tekton import router
 from web.usuario.rest import Usuario
+from web.usuario.rest import Cardapios
 
 
 
 def cadastrar(_write_tmpl, _req):
+    path = router.to_path(salvar)
+    dct = {'salvar': path, 'req': _req}
     _write_tmpl('/templates/cadastro.html')
 
 def como_chegar(_write_tmpl):
@@ -16,21 +19,24 @@ def usuario_listar(_write_tmpl):
     dct = {'lista_usuarios': usuarios}
     _write_tmpl('/templates/usuario_listar.html', dct)
 
-def salvar(_handler, nome, login, password, logradouro, num, bairro, cidade):
-    usuario = Usuario(nome=nome, login=login, password=password, logradouro=logradouro, num=num, bairro=bairro, cidade=cidade, logado=True, admin=False)
-
+def salvar(_handler, nome, logradouro, num, bairro, cidade):
+    usuario = Usuario(nome=nome, logradouro=logradouro, num=num, bairro=bairro, cidade=cidade)
     usuario.put()
+
+def cardapio_listar(_write_tmpl):
+    cardapios = Cardapios.query().fetch()
+    dct = {'lista_cardapios': cardapios}
+    _write_tmpl('/templates/cardapio_listar.html', dct)
+
+def salvarCardapio(_handler, lanche, ingrediente, valor):
+    cardapios = Cardapios(lanche=lanche, ingrediente=ingrediente, valor=valor)
+    cardapios.put()
+
+def cardapios(_write_tmpl):
+    _write_tmpl('/templates/cardapios.html')
 
 def cardapio(_write_tmpl):
     _write_tmpl('/templates/cardapio.html')
-
-    '''hamburguer = Produto(nome='Hamburguer', descricao='Hamburguer de Piracicaba', preco=11.99)
-    rrotDogui = Produto(nome='Hot-Dog', descricao='Hot-Dog de Piracicaba', preco=1.99)
-    hamburguer.put()
-    rrotDogui.put()
-    query = Produto.query()
-    dct = {'cardapio': query.fetch()}
-    _write_tmpl('/templates/cardapio.html', dct)'''
 
 def foto(_write_tmpl):
     _write_tmpl('/templates/foto.html')
