@@ -1,26 +1,12 @@
-function salvarUsuario() {
-     if (!verificarErros()) {
-        $.ajax({
-            url: '/usuario/crud/salvar',
-            type: 'POST',
-            data: $('#form_usuario').serialize(),
-            success: function(result) {
-                alert('Usuário cadastrado com sucesso');
-                window.location.href = '/usuario/crud/usuario_listar'
-            }
-        })
-    }
-}
-
-function salvarCardapio() {
+function salvarLanche() {
     if (!verificarErros()) {
         $.ajax({
-            url: '/usuario/crud/salvarCardapio',
+            url: '/cardapio/crud/salvar_lanche',
             type: 'POST',
             data: $('#form_cardapios').serialize(),
             success: function(result) {
-                alert('Cardápio cadastrado com sucesso');
-                window.location.href = '/usuario/crud/cardapio_listar'
+                alert('Lanche cadastrado com sucesso');
+                window.location.href = '/cardapio/crud/cardapio_listar'
             }
         })
     }
@@ -41,4 +27,3 @@ function verificarErros() {
     }
     return false;
 }
-

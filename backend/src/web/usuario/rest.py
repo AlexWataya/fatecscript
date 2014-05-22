@@ -3,17 +3,13 @@ from __future__ import absolute_import, unicode_literals
 import json
 from google.appengine.ext import ndb
 
-class Cardapios(ndb.Model):
-    lanche = ndb.StringProperty()
-    ingrediente = ndb.StringProperty()
-    valor = ndb.StringProperty()
-
 class Usuario(ndb.Model):
     nome = ndb.StringProperty()
-    logradouro = ndb.StringProperty()
-    num = ndb.StringProperty()
-    bairro = ndb.StringProperty()
-    cidade = ndb.StringProperty()
-    logado = ndb.BooleanProperty()
     admin = ndb.BooleanProperty()
+    email=ndb.StringProperty()
+    google_id=ndb.StringProperty()
+
+    @classmethod
+    def query_by_google(cls,google_id):
+        return cls.query(cls.google_id==google_id)
 

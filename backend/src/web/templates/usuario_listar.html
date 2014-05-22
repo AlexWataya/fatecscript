@@ -9,20 +9,14 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Logradouro</th>
-                        <th>Número</th>
-                        <th>Bairro</th>
-                        <th>Cidade</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
             <tbody>
                 {% for usuario in lista_usuarios %}
                 <tr>
                     <td>{{ usuario.nome }}</td>
-                    <td>{{ usuario.logradouro }}</td>
-                    <td>{{ usuario.num }}</td>
-                    <td>{{ usuario.bairro }}</td>
-                    <td>{{ usuario.cidade }}</td>
+                    <td>{{ usuario.email }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

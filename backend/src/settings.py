@@ -2,7 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 import tmpl_middleware
 from tekton.gae.middleware import router_middleware, parameter, webapp2_dependencies, email_errors
-from web.usuarios import middleware
+from web.usuario import middleware
 
 SENDER_EMAIL = 'alex.wataya@gmail.com'
 WEB_BASE_PACKAGE = "web"

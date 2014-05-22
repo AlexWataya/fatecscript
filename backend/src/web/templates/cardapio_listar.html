@@ -1,30 +1,65 @@
 {% extends 'templates/base.html' %}
 
-{% block main %}
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <h1>Cardápio</h1>
-            <div class="table-responsive">
-            <table class = "table table-striped">
-                <thead>
-                    <tr>
-                        <th>Lanche</th>
-                        <th>Ingredientes</th>
-                        <th>Preço</th>
-                    </tr>
-                </thead>
-            <tbody>
-                {% for cardapios in lista_cardapios %}
-                    <tr>
-                        <td>{{ cardapios.lanche }}</td>
-                        <td>{{ cardapios.ingrediente }}</td>
-                        <td>{{ cardapios.valor }}</td>
-                    </tr>
-                {% endfor %}
+{% block cabecalho %}
+    {{ super() }}
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/controller/tableController.js"></script>
+{% endblock %}
 
-            </tbody>
-            </table>
-                </div>
+{% block main %}
+    <div ng-app="kideliciaApp" ng-controller="controller" class="row clearfix">
+        <div class="col-md-12 column">
+            <h1>Cardapio</h1>
+            <div class="table-responsive">
+                <table class = "table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Lanche</th>
+                            <th>Ingredientes</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="c in cardapios">
+                            <td>
+                                <span ng-hide="c.editando">{_ c.lanche _}</span>
+                                <div ng-show="c.editando" class="input-group">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="c.lanche">
+                                </div>
+                            </td>
+                            <td>
+                                <span ng-hide="c.editando">{_ c.ingrediente _}</span>
+                                <div ng-show="c.editando" class="input-group">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="c.ingrediente">
+                                </div>
+                            </td>
+                            <td>
+                                <span ng-hide="c.editando">{_ c.valor _}</span>
+                                <div ng-show="c.editando" class="input-group">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="c.valor">
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-warning" title="Edit Register"
+                                        ng-click="editarCardapio(c)" ng-hide="c.editando">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button class="btn btn-success" title="Save Changes"
+                                        ng-click="confirmarEdicao(c)" ng-show="c.editando">
+                                <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button class="btn btn-danger" title="Remove Register"
+                                        ng-click="removerElemento(c, $index)" ng-hide="c.editando">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
